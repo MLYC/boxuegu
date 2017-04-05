@@ -5,7 +5,7 @@ define([], function () {
 
     //配置
     require.config({
-        baseUrl: './',
+        baseUrl: '/',
         paths: {
             //配置自己写的js
             advertAdd:'js/advert/advert_add',
@@ -18,9 +18,10 @@ define([], function () {
             courseCatAdd:'js/course/course_category_add',
             courseList:'js/course/course_list',
             courseTpc:'js/course/course_topic',
+            index:'js/home/index',
             login:'js/home/login',
             repass:'js/home/repass',
-            setting:'js/home/setting',
+            settings:'js/home/settings',
             teacherAdd:'js/teacher/teacher_add',
             teacherList:'js/teacher/teacher_list',
             userList:'js/user/user_list',
@@ -46,4 +47,61 @@ define([], function () {
     });
 
     //根据页面加载对应js
+    var pathname = location.pathname;
+    switch(pathname) {
+        case '/':
+            require(['index']);
+            break;
+        case '/html/home/login.html':
+            require(['login']);
+            break;
+        case '/html/home/repass.html':
+            require(['repass']);
+            break;
+        case '/html/home/settings.html':
+            require(['settings']);
+            break;
+        case '/html/advert/advert_add.html':
+            require(['advertAdd']);
+            break;
+        case '/html/advert/advert_list.html':
+            require(['advertList']);
+            break;
+        case '/html/course/course_add_step1.html':
+            require(['courseAdd1']);
+            break;
+        case '/html/course/course_add_step2.html':
+            require(['courseAdd2']);
+            break;
+        case '/html/course/course_add_step3.html':
+            require(['courseAdd3']);
+            break;
+        case '/html/course/course_add.html':
+            require(['courseAdd']);
+            break;
+        case '/html/course/course_category_add.html':
+            require(['courseCatAdd']);
+            break;
+        case '/html/course/course_category.html':
+            require(['courseCat']);
+            break;
+        case '/html/course/course_list.html':
+            require(['courseList']);
+            break;
+        case '/html/course/course_topic.html':
+            require(['courseTpc']);
+            break;
+        case '/html/teacher/teacher_add.html':
+            require(['teacherAdd']);
+            break;
+        case '/html/teacher/teacher_list.html':
+            require(['teacherList']);
+            break;
+        case '/html/user/user_profile.html':
+            require(['userPfl']);
+            break;
+        case '/html/user/user_list.html':
+            require(['userList']);
+            break;
+    }
 });
