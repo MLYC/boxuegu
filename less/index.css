@@ -22,15 +22,15 @@ a:focus {
   top: 0;
   bottom: 0;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
 }
 .overlay img {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 100px;
-  margin: -80px 0 0 -50px;
+  width: 70px;
+  margin: -80px 0 0 -35px;
 }
 .aside {
   position: fixed;

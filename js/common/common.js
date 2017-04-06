@@ -1,8 +1,8 @@
 /**
  * Created by LYC on 2017/4/6.
  */
-define(['jquery','jqueryCookie'], function ($,undefined) {
-    if(!$.cookie('PHPSESSID')){
+define(['jquery', 'jqueryCookie'], function ($, undefined) {
+    if (!$.cookie('PHPSESSID')) {
         location.href = '/html/home/login.html';
     }
     // var cookieArr = document.cookie.split('; ');
@@ -18,4 +18,11 @@ define(['jquery','jqueryCookie'], function ($,undefined) {
     // }else if(isLogin&&location.pathname ==='/html/home/login.html'){
     //     location.href = '/';
     // }
+    return {
+        getUrlParam: function (key) {
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            var result = window.location.search.substr(1).match(reg);
+            return result ? decodeURIComponent(result[2]) : null;
+        }
+    };
 });

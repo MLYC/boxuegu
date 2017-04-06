@@ -5,6 +5,23 @@
     <title>学IT - 后台管理系统</title>
     <!--通过phpincloude方法引入样式文件-->
     <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/style.html')?>
+    <script id="teacher_list" type="text/html">
+        {{each result}}
+        <tr>
+            <td>{{$index+1}}</td>
+            <td>{{$value.tc_name}}</td>
+            <td>{{$value.tc_roster}}</td>
+            <td>{{$value.tc_birthday}}</td>
+            <td>{{$value.tc_gender==0?'女':'男'}}</td>
+            <td>{{$value.tc_cellphone}}</td>
+            <td>
+                <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs" data-id = '{{$value.tc_id}}'>查 看</a>
+                <a href="/html/teacher/teacher_add.html?id={{$value.tc_id}}" class="btn btn-info btn-xs" data-id = '{{$value.tc_id}}'>编 辑</a>
+                <a href="javascript:;" class="btn btn-warning btn-xs" data-id = '{{$value.tc_id}}'>注 销</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
 </head>
 <body>
     <!--导入左侧导航栏-->
@@ -48,20 +65,20 @@
                                 <th>操作</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>赵玉川</td>
-                                <td>布头儿</td>
-                                <td>28</td>
-                                <td>男</td>
-                                <td>15901256171</td>
-                                <td>
-                                    <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
-                                    <a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
-                                    <a href="javascript:;" class="btn btn-warning btn-xs">注 销</a>
-                                </td>
-                            </tr>
+                        <tbody id="tbody_tc_list">
+                            <!--<tr>-->
+                                <!--<td>1</td>-->
+                                <!--<td>赵玉川</td>-->
+                                <!--<td>布头儿</td>-->
+                                <!--<td>28</td>-->
+                                <!--<td>男</td>-->
+                                <!--<td>15901256171</td>-->
+                                <!--<td>-->
+                                    <!--<a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>-->
+                                    <!--<a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>-->
+                                    <!--<a href="javascript:;" class="btn btn-warning btn-xs">注 销</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -119,6 +136,8 @@
             </div>
         </div>
     </div>
+    <!--导入loading页面-->
+    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/loading.html')?>
     <!--导入js脚本页面-->
     <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/script.html')?>
 </body>
