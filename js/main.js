@@ -10,6 +10,9 @@ define([], function () {
             //配置自己写的js
             advertAdd:'js/advert/advert_add',
             advertList:'js/advert/advert_list',
+            common:'js/common/common',
+            aside:'js/common/aside',
+            header:'js/common/header',
             courseAdd:'js/course/coursr_add',
             courseAdd1:'js/course/coursr_add_step1',
             courseAdd2:'js/course/coursr_add_step2',
@@ -45,9 +48,16 @@ define([], function () {
             }
         }
     });
-
+    //开始进度条
+    require(['nprogress'],function (nprogress) {
+        nprogress.start();
+    });
     //根据页面加载对应js
     var pathname = location.pathname;
+    if(pathname !== '/html/home/login.html'){
+        // 如果不是登陆页面加载公共js
+        require(['common','header']);
+    }
     switch(pathname) {
         case '/':
             require(['index']);

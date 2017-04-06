@@ -704,6 +704,12 @@ a:focus {
   background-color: pink;
   overflow: hidden;
 }
+.login .error_info {
+  padding-top: 10px;
+  font-size: 18px;
+  color: red;
+  text-align: center;
+}
 #chapterModal label {
   color: #666;
   font-weight: normal;
