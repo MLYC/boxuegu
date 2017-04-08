@@ -1,7 +1,7 @@
 /**
  * Created by LYC on 2017/4/6.
  */
-define(['jquery', 'jqueryCookie'], function ($, undefined) {
+define(['jquery', 'jqueryCookie'], function ($,undefinde) {
     if (!$.cookie('PHPSESSID')) {
         location.href = '/html/home/login.html';
     }

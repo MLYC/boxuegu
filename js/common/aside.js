@@ -18,6 +18,7 @@ define(['jquery','jqueryCookie','template'],function ($,undefined,template) {
                     <h4>{{tc_name}}</h4>';
         var userRender = template.compile(userStr);
         var userHtml = userRender(data);
+        // var  userHtml = template.render(userStr,data);
         $('.user_info').html(userHtml);
     }());
     //点击展开收缩子菜单
@@ -25,7 +26,7 @@ define(['jquery','jqueryCookie','template'],function ($,undefined,template) {
         $(this).next().slideToggle();
     });
     var urlPaths = {
-        '/html/teacher/teacher_add.html':'/html/teacher/teacher_list.html',
+        '/html/teacher/teacher_add.html':'/html/teacher/teacher_list.html'
     };
     // console.log(pathName);
     pathName = urlPaths[pathName]?urlPaths[pathName]:pathName;

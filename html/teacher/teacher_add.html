@@ -5,75 +5,142 @@
     <title>学IT - 后台管理系统</title>
     <!--通过phpincloude方法引入样式文件-->
     <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/style.html')?>
+    <script id="tc_from_wrap" type="text/html">
+        <!-- 面包屑 -->
+        <ol class="breadcrumb">
+            <li><a href="/html/teacher/teacher_list.html">讲师管理</a></li>
+            <li class="active">{{tc_id?'讲师修改':'讲师添加'}}</li>
+        </ol>
+        <div class="teacher-add">
+            <form action="" id="tc_form" class="form-horizontal col-xs-offset-2">
+                {{if tc_id}}
+                    <input name="tc_id" value="{{tc_id}}" type="hidden">
+                {{/if}}
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">姓名</label>
+                    <div class="col-xs-4">
+                        <input name="tc_name" type="text" value="{{tc_name}}" class="form-control input-sm" placeholder="讲师名称">
+                    </div>
+                </div>
+                {{if !tc_id}}
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">密码</label>
+                    <div class="col-xs-4">
+                        <input name="tc_pass" type="password" class="form-control input-sm">
+                    </div>
+                </div>
+                {{/if}}
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">入职时间</label>
+                    <div class="col-xs-4">
+                        <input name="tc_join_date" type="text" value="{{tc_join_date}}" class="form-control input-sm">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">类型</label>
+                    <div class="col-xs-2">
+                        <select name="tc_type" class="form-control input-sm">
+                            <option value="1" {{tc_type==1?'selected':''}}>讲师</option>
+                            <option value="0" {{tc_type==0?'selected':''}}>管理员</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">性别</label>
+                    <div class="col-xs-4">
+                        <label class="radio-inline">
+                            <input name="tc_gender" {{tc_gender==0?'checked':''}} value="0" type="radio" checked> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input name="tc_gender" {{tc_gender==1?'checked':''}} value="1" type="radio"> 女
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-7">
+                        <a href="javascript:;" id="tc_add_submit" class="btn btn-success btn-sm pull-right">{{tc_id?' 修 改 ':' 添 加 '}}</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </script>
 </head>
 <body>
-    <!--导入左侧导航栏-->
-    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/aside.html')?>
-    <!-- 主体 -->
-    <div class="main">
-        <div class="container-fluid">
-            <!-- 头部 -->
-            <!--导入头部页面-->
-            <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/header.html')?>
-            <div class="body teacher">
-                <!-- 面包屑 -->
-                <ol class="breadcrumb">
-                    <li><a href="/html/teacher/teacher_list.html">讲师管理</a></li>
-                    <li class="active">讲师添加</li>
-                </ol>
-                <div class="teacher-add">
-                    <form action="" id="tc_form" class="form-horizontal col-xs-offset-2">
-                        <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">姓名</label>
-                            <div class="col-xs-4">
-                                <input name="tc_name" type="text" class="form-control input-sm" placeholder="讲师名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">密码</label>
-                            <div class="col-xs-4">
-                                <input name="tc_pass" type="password" class="form-control input-sm">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">入职时间</label>
-                            <div class="col-xs-4">
-                                <input name="tc_join_date" type="text" class="form-control input-sm">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">类型</label>
-                            <div class="col-xs-2">
-                                <select name="tc_type" class="form-control input-sm">
-                                    <option value="1">讲师</option>
-                                    <option value="0">管理员</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">性别</label>
-                            <div class="col-xs-4">
-                                <label class="radio-inline">
-                                    <input name="tc_gender" value="1" type="radio" checked> 男
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="tc_gender" value="0" type="radio"> 女
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-7">
-                                <a href="javascript:;" id="tc_add_submit" class="btn btn-success btn-sm pull-right"> 添 加 </a>
-                            </div>                          
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!--导入左侧导航栏-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/aside.html')?>
+<!-- 主体 -->
+<div class="main">
+
+    <div class="container-fluid">
+        <!-- 头部 -->
+        <!--导入头部页面-->
+        <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/header.html')?>
+        <div class="body teacher">
+            <!------------------------下面是template方式-------------------->
+
+            <!------------------------上面是template方式-------------------->
+
+            <!----------------下面是传统方式------------------------------->
+            <!--<div class="body teacher">-->
+            <!--&lt;!&ndash; 面包屑 &ndash;&gt;-->
+            <!--<ol class="breadcrumb">-->
+            <!--<li><a href="/html/teacher/teacher_list.html">讲师管理</a></li>-->
+            <!--<li class="active">讲师添加</li>-->
+            <!--</ol>-->
+            <!--<div class="teacher-add">-->
+            <!--<form action="" id="tc_form" class="form-horizontal col-xs-offset-2">-->
+            <!--<div class="form-group">-->
+            <!--<label for="" class="col-xs-3 control-label">姓名</label>-->
+            <!--<div class="col-xs-4">-->
+            <!--<input name="tc_name" type="text" class="form-control input-sm" placeholder="讲师名称">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group pass-box">-->
+            <!--<label for="" class="col-xs-3 control-label">密码</label>-->
+            <!--<div class="col-xs-4">-->
+            <!--<input name="tc_pass" type="password" class="form-control input-sm">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<label for="" class="col-xs-3 control-label">入职时间</label>-->
+            <!--<div class="col-xs-4">-->
+            <!--<input name="tc_join_date" type="text" class="form-control input-sm">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<label for="" class="col-xs-3 control-label">类型</label>-->
+            <!--<div class="col-xs-2">-->
+            <!--<select name="tc_type" class="form-control input-sm">-->
+            <!--<option value="1">讲师</option>-->
+            <!--<option value="0">管理员</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<label for="" class="col-xs-3 control-label">性别</label>-->
+            <!--<div class="col-xs-4">-->
+            <!--<label class="radio-inline">-->
+            <!--<input name="tc_gender" value="0" type="radio" checked> 男-->
+            <!--</label>-->
+            <!--<label class="radio-inline">-->
+            <!--<input name="tc_gender" value="1" type="radio"> 女-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<div class="col-xs-7">-->
+            <!--<a href="javascript:;" id="tc_add_submit" class="btn btn-success btn-sm pull-right"> 添 加 </a>-->
+            <!--</div>                          -->
+            <!--</div>-->
+            <!--</form>-->
+            <!--</div>-->
         </div>
     </div>
-    <!--导入loading页面-->
-    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/loading.html')?>
-    <!--导入js脚本页面-->
-    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/script.html')?>
+    <!----------------上面是传统方式---------------------------->
+</div>
+<!--导入loading页面-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/loading.html')?>
+<!--导入js脚本页面-->
+<?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/script.html')?>
 </body>
 </html>
