@@ -1,50 +1,112 @@
-define(['jquery', 'template', 'nprogress', 'common'], function ($, template, nprogress, util) {
-    //----------------------下面是template方式---------------------//
+define(['jquery', 'template', 'nprogress', 'common','jqueryForm','datepicker','datepickerCN'], function ($, template, nprogress, util,undefinde,undefinde,undefinde) {
+    //----------------------下面是template方式加表单插件--------------//
     //用别人的方法获取url-id
     var tcId = util.getUrlParam('id');
-    //-------------------自己写的获取url参数方法--------//
-    function getUrl(str) {
-        //处理字符串
-        var urlArr = location.search.slice(1).split('&'),urlObj ={};
-        for(var i=urlArr.length;i--;){
-            urlObj[urlArr[i].split('=')[0]]=urlArr[i].split('=')[1];
-        }
-        //如果存在则返回该值，如果不存在则不返回
-        if(urlObj.hasOwnProperty(str)){
-            return urlObj[str];
-        }
-    }
-    //-------------------自己写的获取url参数方法--------//
     //根据是否存在id修改模板渲染内容
     if (tcId) {
         $.get('/v6/teacher/edit', {tc_id: tcId}, function (data) {
             console.log(data);
             $('.teacher').html(template('tc_from_wrap', data.result));
+            $('.date-picker').datepicker({
+                format: 'yyyy-mm-dd',
+                language:'zh-CN',
+                endDate:new Date(),
+                todayBtn:true,
+                todayHighlight:true
+                // startDate:''
+            });
         });
     } else {
         $('.teacher').html(template('tc_from_wrap', {}));
+        $('.date-picker').val('2017-04-09').datepicker({
+            format: 'yyyy-mm-dd',
+            language:'zh-CN',
+            endDate:new Date(),
+            todayBtn:true,
+            todayHighlight:true
+            // startDate:''
+        });
     }
     //添加按钮提交事件
-    $(document).on('click', '#tc_add_submit', function () {
-        var formStr = $('#tc_form').serialize(),
-            urlStr = '/v6/teacher/add';
-        if (tcId) {
-            urlStr = '/v6/teacher/update';
-        }
-        $.ajax({
-            url: urlStr,
-            type: 'post',
-            data: formStr,
-            success: function (data) {
-                console.log(data);
-                location.href = '/html/teacher/teacher_list.html';
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
-    });
-    //----------------------上面是template方式---------------------//
+    // $(document).on('click', '#tc_add_submit', function () {
+    //     var formStr = $('#tc_form').serialize(),
+            // urlStr = '/v6/teacher/add';
+        // if (tcId) {
+        //     urlStr = '/v6/teacher/update';
+        // }
+        //ajaxForm事件委托无效
+        // $(document).on('submit','#tc_form',function () {
+        //     $(this).ajaxSubmit(function () {
+        //         location.href = '/html/teacher/teacher_list.html';
+        //     });
+        //     return false;
+        // });
+        //ajaxForm事件委托需要添加delegation:true;
+        $('#tc_form').ajaxForm({
+            delegation:true,
+            success:function () {
+            location.href = '/html/teacher/teacher_list.html';
+        }});
+        // $.ajax({
+        //     url: urlStr,
+        //     type: 'post',
+        //     data: formStr,
+        //     success: function (data) {
+        //         console.log(data);
+        //         location.href = '/html/teacher/teacher_list.html';
+        //     },
+        //     error: function (data) {
+        //         console.log(data);
+        //     }
+        // });
+    // });
+    //----------------------上面是template方式加表单插件-----------------//
+    // //----------------------下面是template方式---------------------//
+    // //用别人的方法获取url-id
+    // var tcId = util.getUrlParam('id');
+    // //-------------------自己写的获取url参数方法--------//
+    // function getUrl(str) {
+    //     //处理字符串
+    //     var urlArr = location.search.slice(1).split('&'),urlObj ={};
+    //     for(var i=urlArr.length;i--;){
+    //         urlObj[urlArr[i].split('=')[0]]=urlArr[i].split('=')[1];
+    //     }
+    //     //如果存在则返回该值，如果不存在则不返回
+    //     if(urlObj.hasOwnProperty(str)){
+    //         return urlObj[str];
+    //     }
+    // }
+    // //-------------------自己写的获取url参数方法--------//
+    // //根据是否存在id修改模板渲染内容
+    // if (tcId) {
+    //     $.get('/v6/teacher/edit', {tc_id: tcId}, function (data) {
+    //         console.log(data);
+    //         $('.teacher').html(template('tc_from_wrap', data.result));
+    //     });
+    // } else {
+    //     $('.teacher').html(template('tc_from_wrap', {}));
+    // }
+    // //添加按钮提交事件
+    // $(document).on('click', '#tc_add_submit', function () {
+    //     var formStr = $('#tc_form').serialize(),
+    //         urlStr = '/v6/teacher/add';
+    //     if (tcId) {
+    //         urlStr = '/v6/teacher/update';
+    //     }
+    //     $.ajax({
+    //         url: urlStr,
+    //         type: 'post',
+    //         data: formStr,
+    //         success: function (data) {
+    //             console.log(data);
+    //             location.href = '/html/teacher/teacher_list.html';
+    //         },
+    //         error: function (data) {
+    //             console.log(data);
+    //         }
+    //     });
+    // });
+    // //----------------------上面是template方式---------------------//
 
     //-------------------------下面是传统方式-----------------------//
     // var tcId = util.getUrlParam('id'),

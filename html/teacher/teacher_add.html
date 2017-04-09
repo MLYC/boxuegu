@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
+    <link rel="stylesheet" href="/lib/bootstrap-datepicker/css/bootstrap-datepicker3.css">
     <!--通过phpincloude方法引入样式文件-->
     <?php include($_SERVER['DOCUMENT_ROOT'].'/html/common/style.html')?>
     <script id="tc_from_wrap" type="text/html">
@@ -12,7 +13,7 @@
             <li class="active">{{tc_id?'讲师修改':'讲师添加'}}</li>
         </ol>
         <div class="teacher-add">
-            <form action="" id="tc_form" class="form-horizontal col-xs-offset-2">
+            <form id="tc_form" action={{tc_id?'/v6/teacher/update':'/v6/teacher/add'}}  method="post" class="form-horizontal col-xs-offset-2">
                 {{if tc_id}}
                     <input name="tc_id" value="{{tc_id}}" type="hidden">
                 {{/if}}
@@ -33,7 +34,7 @@
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">入职时间</label>
                     <div class="col-xs-4">
-                        <input name="tc_join_date" type="text" value="{{tc_join_date}}" class="form-control input-sm">
+                        <input name="tc_join_date" type="text" value="{{tc_join_date}}" class="form-control input-sm date-picker">
                     </div>
                 </div>
                 <div class="form-group">
@@ -58,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-7">
-                        <a href="javascript:;" id="tc_add_submit" class="btn btn-success btn-sm pull-right">{{tc_id?' 修 改 ':' 添 加 '}}</a>
+                        <button type="submit" id="tc_add_submit" class="btn btn-success btn-sm pull-right">{{tc_id?' 修 改 ':' 添 加 '}}</button>
                     </div>
                 </div>
             </form>
