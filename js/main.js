@@ -42,7 +42,8 @@ define([], function () {
             jqueryCookie: 'lib/jquery-cookie/jquery.cookie',
             jqueryForm: 'lib/jquery-form/jquery.form',
             jqueryRegion: 'lib/jquery-region/jquery.region',
-            nprogress: 'lib/nprogress/nprogress'
+            nprogress: 'lib/nprogress/nprogress',
+            uploadify:'lib/uploadify/jquery.uploadify.min'
         },
         shim:{
             bootstrap:{
@@ -53,6 +54,12 @@ define([], function () {
             // },
             datepickerCN:{
                 deps:['datepicker']
+            },
+            ckeditor:{
+                exports:'CKEDITOR'
+            },
+            uploadify:{
+                deps:['jquery']
             }
         }
     });
