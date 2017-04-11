@@ -1,4 +1,8 @@
-define(['jquery','template','nprogress','bootstrap'], function($,template,nprogress,undefined) {
+define(['jquery','template','nprogress','bootstrap','aside'], function($,template,nprogress,undefined,Aside) {
+    var aside = new Aside();
+    aside.addInfo();
+    aside.triggerList();
+    aside.updateActive();
 	$.get('/v6/teacher',function (data) {
 	    // console.log(data);
         // console.log(template('teacher_list',data));

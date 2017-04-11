@@ -1,5 +1,9 @@
-define(['jquery','nprogress','jqueryCookie','aside'], function($,nprogress,undefined,undefined) {
-
+define(['jquery','nprogress','jqueryCookie','aside','header'], function($,nprogress,undefined,Aside,Header) {
+    new Header().logout();
+    var aside = new Aside();
+    aside.addInfo();
+    aside.triggerList();
+    aside.updateActive();
 
     // $.ajax({
     //     type:'post',

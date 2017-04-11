@@ -14,6 +14,7 @@ define([], function () {
             aside:'js/common/aside',
             header:'js/common/header',
             loading:'js/common/loading',
+            util:'js/common/util',
             courseAdd:'js/course/coursr_add',
             courseAdd1:'js/course/coursr_add_step1',
             courseAdd2:'js/course/coursr_add_step2',
